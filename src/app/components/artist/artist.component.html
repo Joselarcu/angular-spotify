@@ -1,0 +1,60 @@
+<div class="container main-container">
+  <div class="row">
+    <div class="col-md-2 text-center">
+      <img class="img-circle img-thumbnail" [src]="artist?.images |nopicture" alt="">
+    </div>
+    <div class="col-md-10">
+      <div class="row">
+        <div class="col md 12">
+          <h3>{{artist?.name}} <small>{{artist?.popularity}}</small> </h3>
+          <hr>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-2">
+          <button type="button" class="btn btn-outline-danger" [routerLink]="['/search']">Volver</button>
+        </div>
+        <div class="col-md-2 col-md-offset-8">
+          <a [href]="artist?.external_urls.spotify" class="btn btn-outline-success" target="_blank">Abrir en spotify</a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <br><br>
+  <div class="row">
+    <div class="col-md-12">
+      <h3>Top tracks</h3>
+    </div>
+  </div>
+
+  <div class="row  main-container">
+    <div class="col-md-1 text-center">
+      <h4>Img</h4>
+    </div>
+    <div class="col-md-4  text-center">
+      <h4>Name</h4>
+    </div>
+    <div class="col-md-2 text-center">
+      <h4>popularity</h4>
+    </div>
+    <div class="col-md-1 col-md-offset-6  text-center">
+      <h4>preview</h4>
+    </div>
+  </div>
+
+  <div class="row main-container" *ngFor="let song of songs">
+    <div class="col-md-1 text-center">
+      <img [src]="song.album.images[0].url" class="img-fluid" alt="">
+    </div>
+    <div class="col-md-4 text-center">
+      <h3>{{song.name}}</h3>
+    </div>
+    <div class="col-md-2 text-center">
+      <h3>{{song.popularity}}%</h3>
+    </div>
+    <div class="col-md-1 col-md-offset-6 text-center">
+      <iframe [src]="song.uri |safedom: 'https://open.spotify.com/embed?uri='" width="300" height="80" frameborder="0" allowtransparency="true"></iframe>
+    </div>
+  </div>
+</div>
